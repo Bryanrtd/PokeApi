@@ -1,0 +1,13 @@
+<div class="col">
+  <div class="card bounce-7" (click)="goToPokemonDescription()">
+    <img [src]="imgUrl" class="card-img-top" [alt]="pokemon?.name" loading="lazy">
+    <div class="card-body">
+      <h6 class="pokeNumber">N.º {{pokemonNumber | number: '3.0'}}</h6>
+      <h5 class="card-title">{{pokemon?.name | titlecase}}</h5>
+      <div class="d-flex">
+        <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+types.type.name+'-type)'}"
+        *ngFor="let types of pokemon?.types">{{types.type.name}}</span>
+      </div>
+    </div>
+  </div>
+</div>

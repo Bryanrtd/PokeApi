@@ -1,0 +1,66 @@
+<div class="container">
+
+  <div class="row text-center">
+    <h1>{{pokemonData?.name}} <span class="text-secondary">N.º {{pokemonData?.id | number: '4.0' | nocomma }}</span>
+    </h1>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+      <img [src]="pokemonImg" class="card-img-top" [alt]="pokemonData?.name" loading="lazy">
+    </div>
+
+    <div class="col-7 row my-3">
+      <h3> {{this.pokemonCharacteristicsDescription}}</h3>
+        <div class="bg-info rounded rounded-2 row w-75">
+        <div class="col-6">
+          <div class="row my-3">
+            <h5 class="text-white" i18n>Height</h5>
+            <h5>{{pokemonData?.height | number: "1.0-4"}}</h5>
+          </div>
+          <div class="row my-3">
+            <h5 class="text-white" i18n>Weight</h5>
+            <h5>{{pokemonData?.weight}}</h5>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="row my-3">
+            <h5 class="text-white" i18n>Category</h5>
+            <h5>Categoria</h5>
+          </div>
+          <div class="row my-3">
+            <h5 class="text-white" i18n>Habilities</h5>
+            <h5 *ngFor="let ability of pokemonData?.abilities">{{ability.ability.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5">
+      <h5 i18n>Base Points</h5>
+    </div>
+    <div class="col-7">
+      <div class="row">
+        <h5 i18n>Type</h5>
+        <div class="d-flex">
+          <h2>
+            <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+types.type.name+'-type)'}"
+              *ngFor="let types of pokemonData?.types">{{types.type.name}}</span>
+          </h2>
+        </div>
+      </div>
+      <div class="row">
+        <h5 i18n>Weakness</h5>
+        <div class="d-flex">
+          <h2>
+            <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+weakness.name+'-type)'}"
+              *ngFor="let weakness of pokemonData?.weakness">{{weakness.name}}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

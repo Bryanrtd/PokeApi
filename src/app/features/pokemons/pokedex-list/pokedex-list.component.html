@@ -1,0 +1,9 @@
+<div  class="container my-5 py-2"  >
+
+  <div class="row row-cols-1 row-cols-md-5 g-4">
+    <div *ngFor="let pokemon of tempPokedexList; let idx = index" appScrollTracker (elementVisible)="cargarMas($event)"
+    [isTargetElement]="(idx + 1) == tempPokedexList?.length">
+      <app-pokemon-thumbnail [pokemon]="pokemon" ></app-pokemon-thumbnail>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+:root{
+  --grass-type: #9bcc50;
+  --poison-type: #b97fc9;
+  --fire-type: #fd7d24;
+  --water-type: #4592c4;
+  --flying-type: #a890f0;
+  --bug-type: #729f3f;
+  --normal-type: #a4acaf;
+  --electric-type: #eed535;
+  --ground-type: #e0c068;
+  --rock-type: #b8a038;
+  --fighting-type: #c03028;
+  --ice-type: #f85888;
+  --dragon-type: #7038f8;
+  --ghost-type: #705898;
+  --dark-type: #705848;
+  --steel-type: #b8b8d0;
+  --fairy-type: #ffb7fa;
+}
+
+/* background: rgb(155,204,80);
+background: linear-gradient(52deg, rgba(155,204,80,1) 0%, rgba(185,127,201,1) 50%); */
