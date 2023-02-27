@@ -10,9 +10,10 @@ import { NocommaPipe } from 'src/app/pipes/nocomma.pipe';
 import { PipesModule } from 'src/app/pipes/pipes/pipes.module';
 import { DirectivesModule } from 'src/app/directives/directives.module';
 import { ScrollTrackerDirective } from 'src/app/directives/scroll-tracker.directive';
+import { PokemonEvolutionComponent } from './pokemon-evolution/pokemon-evolution.component';
 
 @NgModule({
-  declarations: [PokemonComponent, PokedexListComponent, PokemonThumbnailComponent],
+  declarations: [PokemonComponent, PokedexListComponent, PokemonThumbnailComponent, PokemonEvolutionComponent],
   imports: [CommonModule, PokemonRoutingModule, PipesModule, DirectivesModule],
   providers: [PokemonService, NocommaPipe, DecimalPipe, ScrollTrackerDirective]
 })

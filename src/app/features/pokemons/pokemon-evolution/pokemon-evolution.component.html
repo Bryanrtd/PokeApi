@@ -1,0 +1,19 @@
+<div class="my-5">
+  <h4>Evoluciones</h4>
+  <div class="row d-flex justify-content-between">
+    <div class=" text-center px-auto evol__thumbnail__width" *ngFor="let evol of pokemonEvolutionInfo">
+      <div class="row">
+        <h5>{{evol.name}}</h5>
+      </div>
+      <div class="border border-success rounded">
+        <img [src]="evol.imageUrl" [alt]="evol.name" style="height: 200px;">
+      </div>
+      <div class="d-flex justify-content-center mt-1">
+        <span  *ngFor="let type of evol.types"
+        class="mx-2 badge" [ngStyle]="{'background': 'var(--'+type.type.name+'-type)'}">
+          {{type.type.name}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

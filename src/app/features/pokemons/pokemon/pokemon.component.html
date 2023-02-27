@@ -1,13 +1,13 @@
 <div class="container">
 
   <div class="row text-center">
-    <h1>{{pokemonData?.name}} <span class="text-secondary">N.º {{pokemonData?.id | number: '4.0' | nocomma }}</span>
+    <h1>{{pokemonData?.name}} <span class="text-secondary">N.º {{pokemonData?.id | number: '2.0-0' | nocomma }}</span>
     </h1>
   </div>
 
   <div class="row">
     <div class="col-5">
-      <img [src]="pokemonImg" class="card-img-top" [alt]="pokemonData?.name" loading="lazy">
+      <img [src]="pokemonImg" id="pokemonImg" class="card-img-top" [alt]="pokemonData?.name" loading="lazy">
     </div>
 
     <div class="col-7 row my-3">
@@ -16,17 +16,17 @@
         <div class="col-6">
           <div class="row my-3">
             <h5 class="text-white" i18n>Height</h5>
-            <h5>{{pokemonData?.height | number: "1.0-4"}}</h5>
+            <h5>{{pokemonData?.height | number: "1.0-4"}} m</h5>
           </div>
           <div class="row my-3">
             <h5 class="text-white" i18n>Weight</h5>
-            <h5>{{pokemonData?.weight}}</h5>
+            <h5>{{pokemonData?.weight}} kg</h5>
           </div>
         </div>
         <div class="col-6">
           <div class="row my-3">
             <h5 class="text-white" i18n>Category</h5>
-            <h5>Categoria</h5>
+            <h5>{{pokemonCategory}}</h5>
           </div>
           <div class="row my-3">
             <h5 class="text-white" i18n>Habilities</h5>
@@ -40,27 +40,42 @@
   <div class="row">
     <div class="col-5">
       <h5 i18n>Base Points</h5>
+      <ng-container>
+        <div *ngFor="let stats of pokemonData?.stats" class="row mb-2">
+          <div class="col-4">{{stats.stat.name}}</div>
+          <div class="col-8">
+            <div class="progress" role="progressbar" [attr.aria-label]="stats.stat.name" [attr.aria-valuenow]="stats.base_stat" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" [style]="'width:'+ stats.base_stat +'%'"></div>
+              <small>{{stats.base_stat}}</small>
+            </div>
+          </div>
+        </div>
+      </ng-container>
     </div>
     <div class="col-7">
       <div class="row">
-        <h5 i18n>Type</h5>
+        <h4 i18n>Type</h4>
         <div class="d-flex">
-          <h2>
-            <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+types.type.name+'-type)'}"
+          <h4>
+            <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+types.type.original_name+'-type)'}"
               *ngFor="let types of pokemonData?.types">{{types.type.name}}</span>
-          </h2>
+          </h4>
         </div>
       </div>
       <div class="row">
-        <h5 i18n>Weakness</h5>
+        <h4 i18n>Weakness</h4>
         <div class="d-flex">
-          <h2>
-            <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+weakness.name+'-type)'}"
+          <h4>
+            <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+weakness.original_name+'-type)'}"
               *ngFor="let weakness of pokemonData?.weakness">{{weakness.name}}</span>
-          </h2>
+          </h4>
         </div>
       </div>
     </div>
+  </div>
+
+  <div *ngIf="evolChainArr.length > 0">
+    <app-pokemon-evolution [pokemonEvol]="evolChainArr"></app-pokemon-evolution>
   </div>
 
 </div>

@@ -16,14 +16,16 @@ export class PokemonThumbnailComponent implements OnChanges {
   }
 
   @Input() pokemon?: Result;
-  pokemonNumber: string | undefined = "0";
+  pokemonNumber: string | null = "0";
   imgUrl: string = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['pokemon'].currentValue) {
-      const number = this.pokemon?.url.replace("https://pokeapi.co/api/v2/pokemon/","").replace("/","");
+    if (changes["pokemon"].currentValue) {
+      const number = this.pokemon?.url.replace("https://pokeapi.co/api/v2/pokemon/","").replace("/","") ?? null;
       this.pokemonNumber = number
-      this.imgUrl = `${this.imgUrl}${this.decimalPipe.transform(this.pokemonNumber,"3.0-0")}.png`
+      if (this.pokemon !== null) {
+        this.imgUrl = `${this.imgUrl}${this.decimalPipe.transform(this.pokemonNumber,"3.0-0")}.png`
+      }
     }
   }
 
