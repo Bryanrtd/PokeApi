@@ -2,10 +2,27 @@
   <h1>Pokedex </h1>
 
 
+  <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="getDataWhosThatPokemon()">Quien es este pokemon?</button>
+
   <div class="row row-cols-1 row-cols-md-5 g-4">
     <div *ngFor="let pokemon of tempPokedexList; let idx = index" appScrollTracker (elementVisible)="cargarMas($event)"
       [isTargetElement]="(idx + 1) == tempPokedexList?.length">
       <app-pokemon-thumbnail [pokemon]="pokemon"></app-pokemon-thumbnail>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Quien es este pokemon</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <app-pokemon-thumbnail *ngIf="randomPokeId > 0" [pokemon]="tempPokedexList[randomPokeId]" [whoIsThatPokemon]="true"
+      [whoIsThatPokemonList]="{list: pokemonIdx, answer: tempPokedexList[randomPokeId]?.name}"></app-pokemon-thumbnail>
+      </div>
     </div>
   </div>
 </div>

@@ -6,8 +6,8 @@ import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './shared/home/home.component';
 import { DirectivesModule } from './directives/directives.module';
+import { HomeComponent } from './shared/home/home.component';
 import { LayoutComponent } from './shared/layout/layout.component';
 
 registerLocaleData(localeFr);

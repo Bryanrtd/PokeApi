@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-:root{
+:root {
   --grass-type: #9bcc50;
   --poison-type: #b97fc9;
   --fire-type: #fd7d24;
@@ -18,6 +18,16 @@
   --steel-type: #b8b8d0;
   --fairy-type: #ffb7fa;
   --psychic-type: #f366b9;
+}
+
+body {
+  background: rgb(50, 50, 50);
+  background: linear-gradient(
+    306deg,
+    rgba(50, 50, 50, 0.1) 0%,
+    rgba(240, 240, 240, 0.1) 50%,
+    rgba(50, 50, 50, 0.1) 100%
+  );
 }
 
 /* background: rgb(155,204,80);

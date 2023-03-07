@@ -9,10 +9,9 @@
         <img [src]="evol.imageUrl" [alt]="evol.name" style="height: 200px;">
       </div>
       <div class="d-flex justify-content-center mt-1">
-        <span  *ngFor="let type of evol.types"
-        class="mx-2 badge" [ngStyle]="{'background': 'var(--'+type.type.name+'-type)'}">
-          {{type.type.name}}
-        </span>
+        <app-type-badge *ngFor="let type of evol.types"
+        [type]="{name: type.type.name, originalName: type.type.name}"
+        [badgeSize]="'h6'"></app-type-badge>
       </div>
     </div>
   </div>

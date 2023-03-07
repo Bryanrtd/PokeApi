@@ -16,22 +16,42 @@ export class PokemonThumbnailComponent implements OnChanges {
   }
 
   @Input() pokemon?: Result;
+  @Input() whoIsThatPokemon: boolean = false;
+  @Input() whoIsThatPokemonList: {list?: string[], answer?: string} | null = null;
   pokemonNumber: string | null = "0";
-  imgUrl: string = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"
+  originalImgUrl: string = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/"
+  imgUrl: string = ""
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes["pokemon"].currentValue) {
       const number = this.pokemon?.url.replace("https://pokeapi.co/api/v2/pokemon/","").replace("/","") ?? null;
       this.pokemonNumber = number
       if (this.pokemon !== null) {
-        this.imgUrl = `${this.imgUrl}${this.decimalPipe.transform(this.pokemonNumber,"3.0-0")}.png`
+        this.imgUrl = `${this.originalImgUrl}${this.decimalPipe.transform(this.pokemonNumber,"3.0-0")}.png`
       }
     }
+    if (changes["whoIsThatPokemonList"]?.currentValue){
+      this.whoIsThatPokemon = true;
+    }
+
   }
 
   goToPokemonDescription(){
     this.router.navigate([this.pokemon?.name], {relativeTo: this.activatedRoute})
   }
 
+  answerQuestion(pokemonName: string){
+    this.whoIsThatPokemon = false
+    return this.whoIsThatPokemonList?.answer === pokemonName;
+  }
 
+  filterValues(arr: any[], key: string){
+    return [...new Map(arr.map((item: any) => [item[key], item])).values()];
+  }
+
+  getValues(arr: any[], key: string){
+    return arr.filter(
+      (thing, index, self) => index === self.findIndex((t) => t[key] === thing[key])
+    )
+  }
 }

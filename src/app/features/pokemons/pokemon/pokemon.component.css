@@ -1,0 +1,14 @@
+.container{
+  background: rgb(255, 255, 255, 0.3);
+  border-radius: 25px;
+
+}
+
+
+.pokemon__abilities__info{
+  background: #30a7d7;
+}
+
+.pokemon__image__container{
+  background-color: #F2F2F2
+}
