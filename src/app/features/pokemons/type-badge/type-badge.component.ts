@@ -12,7 +12,7 @@ type Sizes = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 })
 export class TypeBadgeComponent  {
 
-  @Input() type: {name: string; originalName?: string} | null = null;
+  @Input({required: true}) type: {name: string; originalName?: string} | null = null;
   @Input() badgeSize: Sizes = "h6";
 
 }

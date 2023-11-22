@@ -40,9 +40,11 @@
               <tr>
                 <th i18n>Habilities</th>
                 <td>
-                  <tr *ngFor="let ability of pokemonData?.abilities">
-                    <td>{{ability.ability.name}}</td>
-                  </tr>
+                  @for (ability of pokemonData.abilities; track ability.ability) {
+                    <tr>
+                      <td>{{ability.ability.name}}</td>
+                    </tr>
+                  }
                 </td>
               </tr>
             </tbody>
@@ -74,9 +76,12 @@
     <div class="col-5">
       <h5 i18n>Base Points</h5>
       <ng-container>
-        <canvas *ngIf="activateChart" id="myChart"></canvas>
+        @if(activateChart){
+          <canvas id="myChart"></canvas>
+        }
 
-        <div *ngFor="let stats of pokemonData?.stats" class="row mb-2">
+        @for (stats of pokemonData.stats; track stats.stat) {
+        <div class="row mb-2">
           <div class="col-4">{{stats.stat.name}}</div>
           <div class="col-8">
             <div class="progress" role="progressbar" [attr.aria-label]="stats.stat.name" [attr.aria-valuenow]="stats.base_stat" aria-valuemin="0" aria-valuemax="100">
@@ -85,23 +90,26 @@
             </div>
           </div>
         </div>
+      }
       </ng-container>
     </div>
     <div class="col-7">
       <div class="row">
         <h4 i18n>Type</h4>
         <div class="d-flex">
-          <app-type-badge *ngFor="let types of pokemonData?.types"
-          [type]="{name: types.type.name, originalName: types.type.original_name}"
-          [badgeSize]="'h4'"></app-type-badge>
+          @for (types of pokemonData.types; track types.type) {
+            <app-type-badge [type]="{name: types.type.name, originalName: types.type.original_name}"
+            [badgeSize]="'h4'"></app-type-badge>
+          }
         </div>
       </div>
       <div class="row">
         <h4 i18n>Weakness</h4>
         <div class="d-flex">
-          <app-type-badge *ngFor="let weakness of pokemonData?.weakness"
-          [type]="{name: weakness.name, originalName: weakness.original_name}"
-          [badgeSize]="'h4'"></app-type-badge>
+          @for (weakness of pokemonData.weakness; track weakness.name) {
+            <app-type-badge [type]="{name: weakness.name, originalName: weakness.original_name}"
+            [badgeSize]="'h4'"></app-type-badge>
+          }
         </div>
       </div>
     </div>
@@ -109,9 +117,9 @@
 </div>
 
   <div [hidden]="selectedTab() !== 'evolution'">
-    <div *ngIf="evolChainArr.length > 0">
+    @if(evolChainArr.length > 0){
       <app-pokemon-evolution [pokemonEvol]="evolChainArr"></app-pokemon-evolution>
-    </div>
+    }
   </div>
 
 </div>

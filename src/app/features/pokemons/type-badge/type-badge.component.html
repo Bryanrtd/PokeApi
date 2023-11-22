@@ -1,4 +1,6 @@
-<p [class]="badgeSize" *ngIf="type">
-  <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+ type.originalName +'-type)'}">
-    {{type.name}}</span>
+<p [class]="badgeSize">
+  @if (type){
+    <span class="me-2 badge" [ngStyle]="{'background': 'var(--'+ type.originalName +'-type)'}">
+      {{type.name}}</span>
+    }
 </p>

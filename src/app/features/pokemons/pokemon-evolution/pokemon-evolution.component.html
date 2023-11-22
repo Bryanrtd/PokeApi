@@ -1,7 +1,8 @@
 <div class="my-5">
   <h4>Evoluciones</h4>
   <div class="row d-flex justify-content-between">
-    <div class=" text-center px-auto evol__thumbnail__width" *ngFor="let evol of pokemonEvolutionInfo">
+    @for (evol of pokemonEvolutionInfo; track $index) {
+    <div class=" text-center px-auto evol__thumbnail__width">
       <div class="row">
         <h5>{{evol.name}}</h5>
       </div>
@@ -9,10 +10,12 @@
         <img [src]="evol.imageUrl" [alt]="evol.name" style="height: 200px;">
       </div>
       <div class="d-flex justify-content-center mt-1">
-        <app-type-badge *ngFor="let type of evol.types"
-        [type]="{name: type.type.name, originalName: type.type.name}"
-        [badgeSize]="'h6'"></app-type-badge>
-      </div>
+        @for (type of evol.types; track type.type) {
+          <app-type-badge [type]="{name: type.type.name, originalName: type.type.name}"
+          [badgeSize]="'h6'" />
+        }
+        </div>
     </div>
+  }
   </div>
 </div>

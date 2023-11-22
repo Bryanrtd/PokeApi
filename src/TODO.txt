@@ -1,0 +1,2 @@
+TODO: Organizar por generacion, orden alfabetico
+TODO: Agregar barra de busqueda

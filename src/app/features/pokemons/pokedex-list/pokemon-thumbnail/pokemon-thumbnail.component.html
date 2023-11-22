@@ -1,19 +1,24 @@
 <div class="col">
   <div class="card" [ngClass]="{'bounce-7': !whoIsThatPokemon, 'whoIsThatPokemonBackground': whoIsThatPokemon}" (click)="goToPokemonDescription()">
     <img [src]="imgUrl" class="card-img-top" [ngClass]="{'whoIsThatPokemon': whoIsThatPokemon}" [alt]="pokemon?.name" loading="lazy">
-    <div class="card-body" *ngIf="!whoIsThatPokemon">
-      <h6 class="pokeNumber">N.º {{pokemonNumber | number: '3.0'}}</h6>
-      <h5 class="card-title">{{pokemon?.name | titlecase}}</h5>
-      <div class="d-flex">
-        <app-type-badge *ngFor="let types of pokemon?.types"
-            [type]="{name: types.type.name, originalName: types.type.name}"
+    @if(!whoIsThatPokemon){
+      <div class="card-body">
+        <h6 class="pokeNumber">N.º {{pokemonNumber | number: '3.0'}}</h6>
+        <h5 class="card-title">{{pokemon?.name | titlecase}}</h5>
+        <div class="d-flex">
+          @for (types of pokemon?.types; track types.type) {
+            <app-type-badge [type]="{name: types.type.name, originalName: types.type.name}"
             [badgeSize]="'h6'"></app-type-badge>
+          }
+        </div>
       </div>
-    </div>
+    }
   </div>
   <div class="d-flex justify-content-between my-2">
-    <button class="btn btn-outline-primary mx-1" *ngFor="let poke of whoIsThatPokemonList?.list" (click)="answerQuestion(poke)">
-      {{poke}}
-    </button>
+    @for (poke of whoIsThatPokemonList?.list; track $index) {
+      <button class="btn btn-outline-primary mx-1"  (click)="answerQuestion(poke)">
+        {{poke}}
+      </button>
+    }
   </div>
 </div>

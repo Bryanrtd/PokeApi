@@ -79,10 +79,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "PokeApi2:build:production"
+              "buildTarget": "PokeApi2:build:production"
             },
             "development": {
-              "browserTarget": "PokeApi2:build:development"
+              "buildTarget": "PokeApi2:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -90,7 +90,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "PokeApi2:build"
+            "buildTarget": "PokeApi2:build"
           }
         },
         "test": {
