@@ -26,6 +26,6 @@ export interface Pokedex {
   sprites: Sprites;
   stats: Stat[];
   types: Type[];
-  weight: number;
+  weight: number | null;
   weakness: Generation[];
 }

@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, WritableSignal, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { Subscription } from 'rxjs';
@@ -37,7 +37,8 @@ export class PokemonComponent implements OnInit, OnDestroy {
   evolChainArr: string[] = [];
   habilitiesChart!: Chart;
   activateChart: boolean = false;
-  selectedTab: string = "pokemon";
+  selectedTab: WritableSignal<string> = signal("pokemon");
+
 
   CHART_COLORS: any = {
     red: 'rgb(255, 99, 132)',
@@ -90,6 +91,7 @@ export class PokemonComponent implements OnInit, OnDestroy {
       this.getPokemonSpecieInfo();
 
       this.pokemonData.height *= 0.1;
+      this.pokemonData.weight ??= 0;
       this.pokemonData.weight *= 0.1;
       this.pokemonData.abilities.forEach((x) => {
         this.getAbilityData(x.ability.url, x.ability.name);
@@ -277,7 +279,7 @@ export class PokemonComponent implements OnInit, OnDestroy {
   }
 
   selectTab(tabName: string = "pokemon"){
-    this.selectedTab = tabName;
+    this.selectedTab.set(tabName);
   }
 
 }

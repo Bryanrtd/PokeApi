@@ -8,11 +8,11 @@
   </div>
 
   <nav class="nav nav-pills nav-fill">
-    <a class="nav-link" [ngClass]="{'active': selectedTab === 'pokemon'}"  (click)="selectTab('pokemon')">Pokemon</a>
-    <a class="nav-link" [ngClass]="{'active': selectedTab === 'evolution'}" (click)="selectTab('evolution')">Evoluciones</a>
+    <a class="nav-link" [ngClass]="{'active': selectedTab() === 'pokemon'}"  (click)="selectTab('pokemon')">Pokemon</a>
+    <a class="nav-link" [ngClass]="{'active': selectedTab() === 'evolution'}" (click)="selectTab('evolution')">Evoluciones</a>
   </nav>
 
-<div [hidden]="selectedTab !== 'pokemon'">
+<div [hidden]="selectedTab() !== 'pokemon'">
   <div class="row d-flex justify-content-between my-4" >
     <div class="col-5 pokemon__image__container">
       <img [src]="pokemonImg" id="pokemonImg" class="card-img-top" [alt]="pokemonData?.name" loading="lazy">
@@ -108,7 +108,7 @@
   </div>
 </div>
 
-  <div [hidden]="selectedTab !== 'evolution'">
+  <div [hidden]="selectedTab() !== 'evolution'">
     <div *ngIf="evolChainArr.length > 0">
       <app-pokemon-evolution [pokemonEvol]="evolChainArr"></app-pokemon-evolution>
     </div>
